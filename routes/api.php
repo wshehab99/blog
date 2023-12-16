@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('posts',function (Request $request){
-    return \App\Models\Post::index();
+    return \App\Models\Post::all();
 });
