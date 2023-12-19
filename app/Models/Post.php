@@ -21,14 +21,21 @@ class Post extends Model
     }
     public function scopeFilter($query,array $filters): void
     {
-        $query->when($filters['search']?? false, fn($query, $search)=>
-            $query
+        //search filter
+        $query->when($filters['search']?? false, fn($query, $search)=> $query
+            ->where(fn($query)=> $query
                 ->where('title','like','%'.$search.'%')
-                ->orWhere('body','like','%'.$search.'%'));
+                ->orWhere('body','like','%'.$search.'%'))
+        );
+        //category filter
         $query->when($filters['category']?? false, fn($query, $category)=>
             $query->whereHas('category', fn($query)=>
                     $query->where('id', $category)
                 ));
-
+        //author filter
+        $query->when($filters['author']?? false, fn($query, $author)=>
+            $query->whereHas('author', fn($query)=>
+                $query->where('username', $author)
+                ));
     }
 }
