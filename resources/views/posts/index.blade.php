@@ -13,4 +13,5 @@
             <p class="text-center">No posts yet. Please check again later.</p>
         @endif
     </main>
+    {{$posts->links()}}
 </x-layout>
