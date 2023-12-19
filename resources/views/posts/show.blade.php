@@ -1,4 +1,4 @@
-@include('_post-header')
+@include('posts._header')
 <x-layout>
     <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
@@ -8,13 +8,18 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{$post->created_at->diffForHumans()}}</time>
+                        Published
+                        <time>{{$post->created_at->diffForHumans()}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                            <h5 class="font-bold">{{$post->author->name}}</h5>
+                            <h5 class="font-bold">
+                                <a href="/?author={{$post->author->username}}">
+                                    {{$post->author->name}}
+                                </a>
+                            </h5>
                             <h6>{{$post->author->username}}</h6>
                         </div>
                     </div>
@@ -37,7 +42,7 @@
                             Back to Posts
                         </a>
 
-                     <x-category-button :category="$post->category"></x-category-button>
+                        <x-category-button :category="$post->category"></x-category-button>
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-10">

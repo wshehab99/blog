@@ -9,18 +9,7 @@
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
-        <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-           <x-dropdown :currentCategory="$currentCategory??null">
-               <x-dropdown-item href="/">
-                   All
-               </x-dropdown-item>
-               @foreach($categories as $category)
-                   <x-dropdown-item href="?category={{$category->id}}" :active="isset($currentCategory)&&$currentCategory->is($category)">
-                       {{ucwords($category->name)}}
-                   </x-dropdown-item>
-               @endforeach
-           </x-dropdown>
-        </div>
+        <x-category-dropdown></x-category-dropdown>
 
         <!-- Other Filters -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
@@ -46,7 +35,10 @@
 
         <!-- Search -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
-            <form method="GET" action="#">
+            <form method="GET" action="/">
+                @if(request('category'))
+                    <input type="hidden" name="category" value="{{request('category')}}">
+                @endif
                 <input
                         type="text"
                         name="search"
