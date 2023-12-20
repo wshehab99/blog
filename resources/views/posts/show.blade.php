@@ -1,6 +1,5 @@
 @include('posts._header')
 <x-layout>
-    <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
@@ -57,6 +56,4 @@
         </main>
 
     </section>
-    </body>
-
 </x-layout>
