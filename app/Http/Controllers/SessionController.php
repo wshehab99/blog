@@ -11,4 +11,8 @@ class SessionController extends Controller
         auth()->logout();
         return redirect('/')->with('success','Logout success see you soon :)');
     }
+    public function create()
+    {
+        return view('login.create');
+    }
 }
