@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class,'index']);
 Route::get('/post/{post:id}',[PostController::class,'show']);
+//auth
+//register
 Route::get('/register',[RegisterController::class,'create'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
+//login
 Route::get('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/login',[LoginController::class,'login'])->middleware('guest');
+//logout
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
