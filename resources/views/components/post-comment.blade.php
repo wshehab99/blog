@@ -1,7 +1,7 @@
 @props(['comment'])
 <article class="flex bg-gray-100 border border-gray-300 p-8 rounded-xl space-x-4">
     <div class="flex-shrink-0 ">
-        <img src="https://i.pravatar.cc/100" alt="user-image" class="rounded-xl">
+        <img src="https://i.pravatar.cc/100?u={{$comment->author->id}}" alt="user-image" class="rounded-xl">
     </div>
     <div>
         <header class="mb-4">

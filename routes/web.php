@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MailchimpController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,3 +20,7 @@ Route::get('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/login',[LoginController::class,'login'])->middleware('guest');
 //logout
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
+//comment
+Route::post('/post/{post:id}/comment',[Comment::class,'store']);
+//mailchimp
+Route::post('/newsletter',[MailchimpController::class,'subscribe']);
