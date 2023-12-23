@@ -17,4 +17,16 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+    public function store($postId): \Illuminate\Http\RedirectResponse
+    {
+        request()->validate([
+            'body'=>['required']
+        ]);
+        Comment::create([
+            'user_id'=>auth()->id(),
+            'post_id'=>$postId,
+            'body'=>request('body'),
+        ]);
+        return back();
+    }
 }
