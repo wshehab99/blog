@@ -9,45 +9,12 @@
             >
                 @csrf
                 {{--email--}}
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-grey-700"
-                           for="email"
-                    >
-                        email
-                    </label>
-                    <input
-                        class="border border-grey-400 p-2 w-full"
-                        type="email"
-                        name="email"
-                        id="email"
-                        value="{{old('email')}}"
-                        required
-                    >
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-1">{{$message}} </p>
-                    @enderror
-                </div>
+                <x-form.label-input-error name="email" type="text"></x-form.label-input-error>
                 {{--password--}}
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-grey-700"
-                           for="password"
-                    >
-                        password
-                    </label>
-                    <input
-                        class="border border-grey-400 p-2 w-full"
-                        type="password"
-                        name="password"
-                        id="password"
-                        required
-                    >
-                    @error('password')
-                    <p class="text-red-500 text-xs mt-1">{{$message}} </p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <x-submit-button>Login</x-submit-button>
-                </div>
+                <x-form.label-input-error name="password" type="password"></x-form.label-input-error>
+                <x-form.field class="mb-6">
+                    <x-form.button>Login</x-form.button>
+                </x-form.field>
             </form>
         </main>
     </section>

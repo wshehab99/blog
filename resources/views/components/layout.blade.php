@@ -14,21 +14,54 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
+        <div class="mt-8 md:mt-0 flex items-center">
             @guest
-                <a href="/register" class="text-xs font-bold uppercase pl-3">Register</a>
-                <a href="/login" class="text-xs font-bold uppercase pl-3">Login</a>
+                @if(!request()->is('register'))
+                    <a href="/register" class="text-xs font-bold uppercase pl-3">Register</a>
+                @endif
+                @if(!request()->is('login'))
+                    <a href="/login" class="text-xs font-bold uppercase pl-3">Login</a>
+                @endif
             @else
-                <form
-                    method="POST"
-                    action="/logout"
-                >
-                    @csrf
-                    <button
-                        type="submit"
-                        class="text-xs font-bold uppercase  pl-3 font-semibold ml-6"
-                    >Logout</button>
-                </form>
+                <x-drop>
+                    <x-slot name="trigger">
+                        <button
+                            class="text-xs font-bold uppercase font-semibold"
+                        >Welcome {{auth()->user()->name}}
+                        </button>
+
+                    </x-slot>
+                    <x-dropdown-item
+                        href="/admin/dashboard"
+                        :active="request()->is('admin/dashboard')"
+                    >
+                        Dashboard
+                    </x-dropdown-item>
+                    <x-dropdown-item
+                        href="/admin/post/create"
+                        :active="request()->is('admin/post/create')"
+                    >
+                        New post
+                    </x-dropdown-item>
+
+                    <x-dropdown-item
+                        href="#"
+                        x-data="{}"
+                        @click.prevent="document.querySelector('#logout-form').submit()"
+                    >
+                        Logout
+                    </x-dropdown-item>
+                    <form
+                        id="logout-form"
+                        method="POST"
+                        action="/logout"
+                        class="hidden"
+
+                    >
+                        @csrf
+                    </form>
+                </x-drop>
+
             @endguest
 {{--            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">--}}
 {{--                Subscribe for Updates--}}
