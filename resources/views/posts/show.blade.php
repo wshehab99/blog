@@ -55,7 +55,7 @@
                 @include('posts._add-comment-form')
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
                     @foreach($post->comments as $comment)
-                        <x-post-comment :comment="$comment"></x-post-comment>
+                        <x-post.comment :comment="$comment"></x-post.comment>
                     @endforeach
                 </section>
             </article>
