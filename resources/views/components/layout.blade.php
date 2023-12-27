@@ -31,18 +31,20 @@
                         </button>
 
                     </x-slot>
-                    <x-dropdown-item
-                        href="/admin/dashboard"
-                        :active="request()->is('admin/dashboard')"
-                    >
-                        Dashboard
-                    </x-dropdown-item>
-                    <x-dropdown-item
-                        href="/admin/post/create"
-                        :active="request()->is('admin/post/create')"
-                    >
-                        New post
-                    </x-dropdown-item>
+                    @can('admin')
+                        <x-dropdown-item
+                            href="/admin/posts"
+                            :active="request()->is('admin/posts')"
+                        >
+                            All Posts
+                        </x-dropdown-item>
+                        <x-dropdown-item
+                            href="/admin/post/create"
+                            :active="request()->is('admin/post/create')"
+                        >
+                            New post
+                        </x-dropdown-item>
+                    @endcan
 
                     <x-dropdown-item
                         href="#"
