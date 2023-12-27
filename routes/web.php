@@ -27,6 +27,9 @@ Route::post('/newsletter',[MailchimpController::class,'subscribe']);
 Route::get('/', [PostController::class,'index']);
 Route::get('/post/{post:id}',[PostController::class,'show']);
 //admin
-Route::get('/admin/post/create',[AdminPostController::class,'create'])->middleware('admin');
-Route::post('/post/create',[AdminPostController::class,'store'])->middleware('admin');
-Route::get('admin/posts',[AdminPostController::class,'index'])->middleware('admin');
+Route::get('/admin/post/create',[AdminPostController::class,'create'])->middleware('can:admin');
+Route::post('/post/create',[AdminPostController::class,'store'])->middleware('can:admin');
+Route::get('admin/posts',[AdminPostController::class,'index'])->middleware('can:admin');
+Route::get('admin/posts/{post:id}/edit',[AdminPostController::class,'edit'])->middleware('can:admin');
+Route::patch('admin/posts/{post:id}',[AdminPostController::class,'update'])->middleware('can:admin');
+Route::delete('admin/posts/{post:id}',[AdminPostController::class,'destroy'])->middleware('can:admin');

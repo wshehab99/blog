@@ -9,7 +9,14 @@
             >
                 @csrf
                 {{--email--}}
-                <x-form.label-input-error name="email" type="text"></x-form.label-input-error>
+                <x-form.label-input-error
+                    name="email"
+                    type="email"
+                    :value="old('email')"
+                    required
+                >
+
+                </x-form.label-input-error>
                 {{--password--}}
                 <x-form.label-input-error name="password" type="password"></x-form.label-input-error>
                 <x-form.field class="mb-6">

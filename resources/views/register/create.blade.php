@@ -85,7 +85,7 @@
                    @enderror
                </div>
                <div class="mb-6">
-                   <x-submit-button>Submit</x-submit-button>
+                   <x-form.button>Submit</x-form.button>
                </div>
            </form>
        </main>
